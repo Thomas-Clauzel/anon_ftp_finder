@@ -27,4 +27,10 @@ string1="Anonymous FTP login allowed"
 	else
     		echo "Sorry this string not in file"
 	fi
+rm tmp.txt
+rm liste_ftp.txt
+rm liste_open.txt
+rm ip_ftp_open.txt
+echo "anonymous list ftp : "
+cat vulnerables_ftp.txt	
 done
