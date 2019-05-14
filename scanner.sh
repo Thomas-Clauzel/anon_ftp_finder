@@ -30,7 +30,8 @@ do
     # Anonymous FTP login allowed
     string1="Anonymous FTP login allowed"
 	if grep -qF "$string1" tmp.txt;then
-    		echo "Found it"
+    		echo "Vulnerable FTP FOUND ! : "
+		grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}" tmp.txt
 		grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}" tmp.txt >> vulnerables_ftp.txt
 	fi
 done
