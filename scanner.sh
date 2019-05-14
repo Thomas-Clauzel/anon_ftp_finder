@@ -27,13 +27,11 @@ cat ip_ftp_open.txt |  while read output
 do
     echo "check for $output"
     nmap --script ftp-anon $output > tmp.txt
-# Anonymous FTP login allowed
-string1="Anonymous FTP login allowed"
+    # Anonymous FTP login allowed
+    string1="Anonymous FTP login allowed"
 	if grep -qF "$string1" tmp.txt;then
     		echo "Found it"
 		grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}" tmp.txt >> vulnerables_ftp.txt
-	else
-    		echo "Sorry this string not in file"
 	fi
 done
 rm tmp.txt
