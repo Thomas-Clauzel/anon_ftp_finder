@@ -1,17 +1,14 @@
 #!/bin/bash
-echo "
-                                                             
+echo "                                                             
  _____             _____ _____ _____ _____ _       _         
 |  _  |___ ___ ___|   __|_   _|  _  |   __|_|___ _| |___ ___ 
 |     |   | . |   |   __| | | |   __|   __| |   | . | -_|  _|
 |__|__|_|_|___|_|_|__|    |_| |__|  |__|  |_|_|_|___|___|_|  
                                                              
 
-                                                                                                                                                             
 "
 echo "scan network for ftp server"
-#range="192.168.1.1/24"
-range="90.130.70.1/24"
+range="78.192.0.0/16"
 echo $range will be scanned
 echo "------------------"
 nmap -p 21 $range >> liste_ftp.txt
@@ -33,10 +30,11 @@ string1="Anonymous FTP login allowed"
 	else
     		echo "Sorry this string not in file"
 	fi
+done
 rm tmp.txt
 rm liste_ftp.txt
 rm liste_open.txt
 rm ip_ftp_open.txt
 echo "anonymous list ftp : "
-cat vulnerables_ftp.txt	
-done
+cat vulnerables_ftp.txt
+echo "fin"
