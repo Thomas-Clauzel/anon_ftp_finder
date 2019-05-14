@@ -3,10 +3,6 @@ echo "scan network for ftp server"
 #range="192.168.1.1/24"
 range="90.130.70.1/24"
 echo $range will be scanned
-rm tmp.txt
-rm liste_ftp.txt
-rm liste_open.txt
-rm ip_ftp_open.txt
 echo "------------------"
 nmap -p 21 $range >> liste_ftp.txt
 grep -B 4 open liste_ftp.txt  >> liste_open.txt
