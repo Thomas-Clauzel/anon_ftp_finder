@@ -12,16 +12,16 @@ echo "
 |__|__|_|_|___|_|_|__|    |_| |__|  |__|  |_|_|_|___|___|_|  
                                                             
 "
-echo "scan network for ftp server"
+echo "Scan network for ftp server ..."
 range="78.192.0.0/16"
-echo $range will be scanned
+echo $range being scanned
 echo "------------------"
 nmap -p 21 $range >> liste_ftp.txt
 grep -B 4 open liste_ftp.txt  >> liste_open.txt
 grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}" liste_open.txt >> ip_ftp_open.txt
 cat ip_ftp_open.txt
 echo "------------------"
-echo "test ftp server for anonymous user"
+echo "Test ftp server for the anonymous user ..."
 # boucle sur les ip de ipftpopen 
 cat ip_ftp_open.txt |  while read output
 do
@@ -30,7 +30,7 @@ do
     # Anonymous FTP login allowed
     string1="Anonymous FTP login allowed"
 	if grep -qF "$string1" tmp.txt;then
-    		echo "Vulnerable FTP FOUND ! "
+    		echo "Vulnerable FTP FOUND !"
 		grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}" tmp.txt
 		grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}" tmp.txt >> vulnerables_ftp.txt
 	fi
@@ -39,6 +39,6 @@ rm tmp.txt
 rm liste_ftp.txt
 rm liste_open.txt
 rm ip_ftp_open.txt
-echo "anonymous list ftp : "
+echo "Anonymous ftp list : "
 cat vulnerables_ftp.txt
 echo "fin"
