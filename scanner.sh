@@ -3,7 +3,7 @@
 # author : 0code
 # title anon_ftp_finder.sh
 # depenfencies : nmap
-# description : a useful script to discover and try anonymous login on ftp server 
+# description : a useful script to discover and attempt the login of the anonymous user on ftp servers 
 # ------------------------------------------------
 echo "                                                             
  _____             _____ _____ _____ _____ _       _         
@@ -14,7 +14,7 @@ echo "
 "
 echo "Scan network for ftp server ..."
 range="78.192.0.0/16"
-echo $range being scanned
+echo $range "being scanned"
 echo "------------------"
 nmap -p 21 $range >> liste_ftp.txt
 grep -B 4 open liste_ftp.txt  >> liste_open.txt
