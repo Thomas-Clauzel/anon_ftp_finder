@@ -1,0 +1,25 @@
+#!/bin/bash
+cat ftp.txt |  while read output
+do
+echo "
+open $output
+user anonymous password
+bye" > cmd
+    rftp=$(ftp -n < cmd 2>&1)
+        echo "check for : $output"
+        TIMEDOUT="Not connected."
+        BADPASS="Login incorrect."
+        NONE=""
+        if [[ "$rftp" == *"$BADPASS"* ]]; then
+          echo "Wrong Password"
+        fi
+        if [[ "$rftp" == *"$TIMEDOUT"* ]]; then
+          echo "Timed Out"
+        fi
+        if [[ "$rftp" == "$NONE" ]]; then
+          echo "Anonymous FTP"
+          nmap -p 21 --script ftp-anon $output
+          #lftp -u anonymous,pass $ouput/
+        fi
+rm cmd
+done
